@@ -25,23 +25,17 @@ function draw(){
   push()
   rect(20,20,200,50, 5)
   textSize(40);
-
   text("Score:",35,58)
-  
   push()
   strokeWeight(5)
   butter1.show();
   butter1.update();
-
-  distance = dist(mouseX, mouseY, butter1.locationX, butter1.locationY) 
-  
-  if(distance < 100){
-    score = score + 1;
-    print(score)
-  
+  distance = dist(mouseX, mouseY, butter1.locationX, butter1.locationY)     
   }
 
-
+  if(distance < 100){
+    score = score + 1;
+    text(score, 100,200)  
 
   pop()
 //Robot inladen

@@ -26,17 +26,13 @@ class Butter {
       fill(this.yellow);
       stroke(this.zwart);
       strokeWeight(4)
-      rect(this.locationX, this.locationY, 50, 30) ;
-      text(this.score,155,58)
+      rect(this.locationX, this.locationY, 50, 30) 
       
+      text(this.score,155,58)
       if(this.score == 10){
-        if (sound.isPlaying()){
-            sound.stop();
-        }
-        sound.play();
         this.score = 0
-
       }
+
     } 
   }
 
