@@ -1,48 +1,46 @@
-let robot1
-let butter1
+let robot1;
+let butter1;
 let breedte = 1000;
 let hoogte = 1000;
-let img;
+let achtergrond;
 let distance = 0;
 let score = 0;
 
+let geluid1;
+
 function preload() {
-  img = loadImage('Media/cartoon-network-portal.png');
- 
+  achtergrond = loadImage('Media/cartoon-network-portal.png');
+  geluid1 = loadSound('Media/Butter.mp3');
 }
 
-function setup(){
-  createCanvas(windowWidth - 4.5,windowHeight - 4.5); 
-  robot1= new Robot();
-  butter1= new Butter();
-  img.resize(windowWidth,windowHeight);
+function setup() {
+  createCanvas(windowWidth - 10, windowHeight - 10);
+  robot1 = new Robot();
+  butter1 = new Butter();
+  achtergrond.resize(windowWidth-10, windowHeight-10);
 }
 
-function draw(){
-  image(img, 0, 0, width,height, 0,0, img.width,img.height, CONTAIN, LEFT); //achtergrond herladen
-//Boter inladen
-  
-  push()
-  rect(20,20,200,50, 5)
+function draw() {
+  background(achtergrond);
+  push();
+  rect(20, 20, 200, 50, 5);
   textSize(40);
-  text("Score:",35,58)
-  push()
-  strokeWeight(5)
+  text("Score: " + score, 35, 58);
+  if(score == 10){
+    if (geluid1.isPlaying()){
+        geluid1.stop();
+    }
+    geluid1.play();
+    score = 0
+}
+  push();
+  strokeWeight(5);
   butter1.show();
   butter1.update();
-  distance = dist(mouseX, mouseY, butter1.locationX, butter1.locationY)     
-  }
+  pop();
 
-  if(distance < 100){
-    score += 1;
-    text(score, 100,200)  
-
-  pop()
-//Robot inladen
-  push()
-  robot1.show();      
+  push();
+  robot1.show();
   robot1.update();
-  pop()
-
- 
+  pop();
 }
