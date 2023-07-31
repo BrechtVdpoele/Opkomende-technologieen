@@ -34,7 +34,7 @@ function draw(){
   }
 
   if(distance < 100){
-    score = score + 1;
+    score += 1;
     text(score, 100,200)  
 
   pop()
