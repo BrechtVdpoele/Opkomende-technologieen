@@ -2,8 +2,8 @@ class Robot {
   constructor(zwart = 'black',StandaardVulling2 = '#AAAAA3',standaardVulling1 = 'rgb(52,54,63)', rupsbandKleur = 'rgb(113,113,113)', geel = '#FFEB3B', roze = 'rgb(219,13,135)',rood = '#F44336', blauw = 'rgb(63,147,166)', groen = '#69AD53', goud = '#FFC107', angle = 0, angle2 = 0) {
   
   this.zwart = zwart;
-  this.StandaardVulling2 = StandaardVulling2;
   this.standaardVulling1 = standaardVulling1;
+  this.StandaardVulling2 = StandaardVulling2;
   this.rupsbandKleur = rupsbandKleur;
   this.geel = geel;
   this.roze = roze;
