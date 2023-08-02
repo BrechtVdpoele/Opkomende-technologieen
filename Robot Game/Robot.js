@@ -1,3 +1,6 @@
+
+let currentMillisTime = millis(); 
+
 class Robot {
   constructor(zwart = 'black',StandaardVulling2 = '#AAAAA3',standaardVulling1 = 'rgb(52,54,63)', rupsbandKleur = 'rgb(113,113,113)', geel = '#FFEB3B', roze = 'rgb(219,13,135)',rood = '#F44336', blauw = 'rgb(63,147,166)', groen = '#69AD53', goud = '#FFC107', angle = 0, angle2 = 0) {
   
@@ -58,15 +61,17 @@ push();
   strokeWeight(0);
   rect(-6,30,1,14,1);
   
-    if (mouseIsPressed) {
-  if (mouseButton === LEFT) {
+
+  if (currentMillisTime < 5000) {
     this.angle -= PI / 100;
     this.angle2 -= PI / 200;
-  } else if (mouseButton === RIGHT) {
+  } else if (currentMillisTime > 5000) {
     this.angle += PI / 100;
     this.angle2 += PI / 200;
+  } else if (currentMillisTime > 10000){
+    currentMillisTime = 0;
   }
-}
+
 pop();
 
 push();
