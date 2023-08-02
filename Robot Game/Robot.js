@@ -1,5 +1,5 @@
 
-let currentMillisTime = millis(); 
+
 
 class Robot {
   constructor(zwart = 'black',StandaardVulling2 = '#AAAAA3',standaardVulling1 = 'rgb(52,54,63)', rupsbandKleur = 'rgb(113,113,113)', geel = '#FFEB3B', roze = 'rgb(219,13,135)',rood = '#F44336', blauw = 'rgb(63,147,166)', groen = '#69AD53', goud = '#FFC107', angle = 0, angle2 = 0) {
@@ -18,6 +18,7 @@ class Robot {
   this.angle2 = angle2;
   this.robotX = 0;
   this.robotY = 0;
+  this.posRups = 0;
 }
 
 update(){
@@ -29,6 +30,7 @@ update(){
 show(){
    push();
   translate(this.robotX,this.robotY);
+  let ms = millis();
 
 //KLEUR OMLIJNING ZWART
   stroke(this.zwart);
@@ -62,15 +64,9 @@ push();
   rect(-6,30,1,14,1);
   
 
-  if (currentMillisTime < 5000) {
-    this.angle -= PI / 100;
-    this.angle2 -= PI / 200;
-  } else if (currentMillisTime > 5000) {
-    this.angle += PI / 100;
-    this.angle2 += PI / 200;
-  } else if (currentMillisTime > 10000){
-    currentMillisTime = 0;
-  }
+ 
+
+  
 
 pop();
 
@@ -79,7 +75,13 @@ push();
   fill(this.StandaardVulling2);
   strokeWeight(4);
   rect(-15,-15,30,30,5);
-pop();
+pop(); if (ms % 3000 < 1500) {
+   this.angle -= PI / 100;
+    this.angle2 -= PI / 200;
+  } else{
+    this.angle += PI / 100;
+    this.angle2 += PI / 200;
+  } 
 
 
 //RECHTER ARM
@@ -113,15 +115,6 @@ push();
   strokeWeight(0);
   rect(5,33,1,14,1);
 
- if (mouseIsPressed) {
-  if (mouseButton === LEFT) {
-    this.angle -= PI / 100;
-    this.angle2-= PI / 200;
-  } else if (mouseButton === RIGHT) {
-    this.angle += PI / 100;
-    this.angle2+= PI / 200;
-  }
-}
 pop();
 
 push();
@@ -188,10 +181,15 @@ push();
   strokeWeight(4);
   rect(122,286,29,67,5);
   strokeWeight(2);
-  line(148,293,122,293);
+
+  if (ms % 100 > 50) {        // Zoveel mogelijk delen door 1000 zolang er een geheel getal over blijft
+    this.posRups = -2;        // & daarna rest weergeven. bv: 1296 % 100 = 96 want (12*100) + 96 = 1296
+   } else{                    // Dus in dit voorbeeld "ms % 100 > 50" wil zeggen 20x per seconde wisselen!!!
+     this.posRups = 0;        // Want gaat over [0<x<50] & [50<x<100] & 1 seconde = 1000 millis
+   } 
   
-    for(let i=0; i<60; i+=5){
-    line(148,293+i,122,293+i);
+    for(let i=0; i<65; i+=5){
+    line(148,291+i-this.posRups,122,287+i-this.posRups);
   }
 pop();
 
@@ -202,8 +200,8 @@ push();
   rect(248,286,29,67,5);
   strokeWeight(2);
 
-    for(let i=0; i<60; i+=5){
-    line(248,293+i,278,293+i);
+    for(let i=0; i<65; i+=5){
+    line(248,291+i-this.posRups,278,287+i-this.posRups);
   }
 pop();
 
