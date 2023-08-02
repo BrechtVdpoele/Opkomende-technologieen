@@ -37,7 +37,7 @@ function draw() {
   textSize(40);
   
   text("Score: " + score, 35, 58);
-  if(score == 10){
+  if(score == 20){
     if (geluid1.isPlaying()){
         geluid1.stop();
     }
