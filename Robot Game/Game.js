@@ -6,12 +6,12 @@ let hoogte = 1000;
 let achtergrond;
 let distance = 0;
 let score = 0;
-let geluid1;
+let geluid;
 let bugs = [];
 
 function preload() {
   achtergrond = loadImage('Media/cartoon-network-portal.png');
-  geluid1 = loadSound('Media/Butter.mp3');
+  geluid = loadSound('Media/Butter.mp3');
 }
 
 function setup() {
@@ -27,31 +27,37 @@ function setup() {
 
 function draw() {
   background(achtergrond);
+
+  //-----------------------------------Bubbels
   for (let i = 0; i < bugs.length; i++) {
     bugs[i].move();
     bugs[i].display();
   }
 
   push();
+
+  //-----------------------------------Score en geluid
   rect(20, 20, 200, 50, 5);
   textSize(40);
-  
   text("Score: " + score, 35, 58);
-  if(score == 20){
-    if (geluid1.isPlaying()){
-        geluid1.stop();
+  if(score == 5){
+    if (geluid.isPlaying()){
+        geluid.stop();
     }
-    geluid1.play();
-    score = 0;
-  } 
+  }
+  if (score == 6){
+  geluid.play();
+  score = 0;
   push();
+  }
+  //-----------------------------------Boter
   butter1.show();
   butter1.update();
   pop();
 
-  
-
   push();
+
+  //-----------------------------------Robot
   robot1.show();
   robot1.update();
   pop();

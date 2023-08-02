@@ -39,8 +39,8 @@ show(){
      this.posRups = 0;            // Want gaat over [0<x<50] & [50<x<100] & 1 seconde = 1000 millis
    } 
 
-  if (ms % 3000 < 1500) {         //Bovenste zorgt voor de visuele weergave van de rotatie van de rubsbanden
-    this.angle -= PI / 100;       //Onderste voor het bewegen van de armen om de 1.5 seconden
+  if (ms % 2200 < 1100) {         //Bovenste zorgt voor de visuele weergave van de rotatie van de rubsbanden
+    this.angle -= PI / 100;       //Onderste voor het bewegen van de armen om de 1.1 seconden
      this.angle2 -= PI / 200;
    } else{
      this.angle += PI / 100;
