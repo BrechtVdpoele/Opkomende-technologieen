@@ -14,8 +14,8 @@ class Butter {
     update(){
       this.distance = dist(mouseX, mouseY, this.locationX, this.locationY)               
         if(this.distance<100){
-      this.locationX = random(0,windowWidth-50);
-      this.locationY = random(0,windowHeight-50);
+      this.locationX = random(20,windowWidth-100);
+      this.locationY = random(100,windowHeight-200);
       score+=1;
       }
     }

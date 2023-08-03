@@ -10,6 +10,7 @@ let geluid;
 let bugs = [];
 let weatherData;
 let temperature;
+let show = false;
 
 function preload() {
   achtergrond = loadImage('Media/cartoon-network-portal.png');
@@ -51,18 +52,32 @@ function draw() {
 
   //-----------------------------------Score en geluid
   rect(20, 20, 200, 50, 5);
+  rect(415,20,1250,50,5)
   textSize(40);
+  text("We zijn vandaag de " + temperature+"e dag van het jaar, dus er zijn "+ temperature+" bubbels!",430, 58)
   text("Score: " + score, 35, 58);
-  if(score == 5){
+  
+  if(score == 20){
     if (geluid.isPlaying()){
         geluid.stop();
     }
+    geluid.play();
+    score = 0;
+    textSize(80);
+    show = true
   }
-  if (score == 6){
-  geluid.play();
-  score = 0;
+
+  if (show == true){
+    textSize(400);
+    text('BUTTER!',windowWidth/2 -850,windowHeight/2 )
+    if (score == 1){
+      show = false
+    }
+  } 
+
+
   push();
-  }
+  
   //-----------------------------------Boter
   butter1.show();
   butter1.update();
