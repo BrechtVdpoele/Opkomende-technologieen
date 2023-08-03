@@ -8,6 +8,8 @@ let distance = 0;
 let score = 0;
 let geluid;
 let bugs = [];
+let weatherData;
+let temperature;
 
 function preload() {
   achtergrond = loadImage('Media/cartoon-network-portal.png');
@@ -17,19 +19,30 @@ function preload() {
 function setup() {
   createCanvas(windowWidth - 10, windowHeight - 10);
   achtergrond.resize(windowWidth-10, windowHeight-10);
+  loadJSON('https://worldtimeapi.org/api/ip', gotWeatherData);
   robot1 = new Robot();
   butter1 = new Butter();
-  for (let i = 0; i < 200; i++) {
+  for (let i = 0; i < 366; i++) {
     bugs.push(new Jitter());
   }
   
 }
 
+function gotWeatherData(data) {
+  weatherData = data;
+}
+
 function draw() {
   background(achtergrond);
 
+  if (weatherData) {
+      temperature = weatherData.day_of_year;
+    } else {
+      temperature = 0;
+    }
+
   //-----------------------------------Bubbels
-  for (let i = 0; i < bugs.length; i++) {
+  for (let i = 0; i < temperature; i++) {
     bugs[i].move();
     bugs[i].display();
   }
